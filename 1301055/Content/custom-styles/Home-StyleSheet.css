@@ -1,0 +1,28 @@
+﻿body {
+}
+
+
+#image-logo-id {
+    width:45px;
+    height:40px;
+    margin-left:100px;
+}
+
+#search-input-feild{
+    width:450px;
+    border-radius:1px;
+    height:40px;
+    background-color:cornflowerblue;
+    align-content:center;
+    position:center;
+    margin-top:13px;
+}
+
+#databaseSearcher {
+    width:1000px;
+    height:40px;
+    color:blue;
+    background-color:lightgray;
+    border:thin;
+    border-color:blue;
+}

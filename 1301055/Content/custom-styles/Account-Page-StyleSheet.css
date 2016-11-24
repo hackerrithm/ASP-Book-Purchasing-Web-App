@@ -1,0 +1,185 @@
+﻿body {
+    background-color:white;
+}
+
+body .container .table{
+    background-color:white;
+    border-radius:4px;
+    border:none;
+    opacity:1;
+    border-bottom-color:white;
+}
+
+.navbar {
+    background-color:dodgerblue;
+    border-radius:0px;
+    color:orange;
+}
+
+.navbar-brand {
+    color:white;
+    background-color:dodgerblue;
+    font-size:20px;
+
+}
+
+.navbar-brand:hover {
+    color:white;
+    background-color:dodgerblue;
+    font-size:20px;
+
+}
+
+.navbar li a {
+    color:white;
+    background-color:dodgerblue;
+
+}
+
+.navbar ul {
+    color:white;
+    background-color:dodgerblue;
+}
+
+
+.navbar li a:hover {
+    color:white;
+    background-color:blue;
+
+}
+
+.navbar .dropdown .dropdown-toggle {
+    background-color:dodgerblue;
+}
+
+#txtQuantity, #txtLastName, #txtFirstName, #ddlBookName, #txtEditUserName, #ddlBookCategory {
+    width:250px;
+    height:30px;
+    border-radius:2px;
+    border-width:1px;
+}
+
+#btnSubmit {
+    background-color:forestgreen;
+    width:200px;
+    height:40px;
+    color:white;
+}
+
+
+#btnSubmit:hover {
+    background-color:limegreen;
+    width:200px;
+    height:40px;
+    color:white;
+}
+
+#btnRemoveItem {
+    background-color:orangered;
+    width:200px;
+    height:40px;
+    color:white;
+}
+
+#btnClearItems {
+    background-color:deeppink;
+    width:200px;
+    height:40px;
+    color:white;
+
+}
+
+#btnAddBookItem {
+    background-color:mediumslateblue;
+    width:200px;
+    height:40px;
+    color:white;
+    font-size:16px;
+}
+
+#btnGoToCart {
+    background-color:deeppink;
+    width:200px;
+    height:40px;
+    color:white;
+    font-size:16px;
+
+} 
+
+#btnProceedToCheckout {
+    background-color:orange;
+    width:200px;
+    height:40px;
+    color:black;
+    font-size:16px;
+}
+
+#listBoxBookList {
+    width:500px;
+    color:blue;
+    height:300px;
+    background-color:white;
+    border:hidden;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 23px;
+}
+
+#shoppingCartImage {
+    height:200px;
+    width:140px;
+    align-content:center;
+}
+
+#profileImageID {
+    height:200px;
+    width:269px;
+    align-content:center;
+}
+
+#bookPanel {
+    width:900px;
+}
+
+#lblBookTitle {
+    color:orangered;
+}
+
+#lblShortDescription {
+    color:blue;
+}
+
+#imgBookImage {
+    width:140px;
+    height:210px;
+}
+
+#lblUnitPrice {
+    color:green;
+    font-size:40px;
+}
+
+#btnViewMoreAboutBook {
+    background-color:red;
+    color:white;
+}
+
+#btnCompleteBookOrder {
+    background-color:dodgerblue;
+    width:300px;
+    height:50px;
+    color:white;
+    font-size:18px;
+}
+
+#validatorQuantity {
+    font-size:20px;
+    height:100px;
+    color:red;
+}
+
+#txtUserName, #txtUserAddress, #txtCity, #txtState, #txtZipCode, #ddlCountries, #txtContactNumber, #txtCardNumber {
+    width:330px;
+    height:30px;
+    border-radius:2px;
+    border-width:0.5px;
+}

@@ -1,0 +1,86 @@
+﻿html 
+{
+    position:           relative;
+    min-height:         100%;
+}
+
+ body 
+{
+    display:            flex;                   
+    min-height:         100vh;
+    flex-direction:     column;
+    background-color:   cadetblue;
+    font-size:          20px;
+}
+
+.blue-text darken-1 
+{
+    font-size:          20px !important;
+}
+
+main 
+{
+    flex:               1 0 auto;
+  
+}
+
+  
+html .receipt-form
+{
+    display:            table;
+    margin:             auto;
+}
+
+body .receipt-form 
+{
+    display:            table;
+}
+.margin 
+{
+    margin:             0 !important;
+}
+
+#txtFirstName, #txtLastName 
+{
+    font-size:          25px;
+}
+
+#lblUserName 
+{
+    color:              orangered;
+}
+
+#listboxBooksOnOrder 
+{
+    height:             200px;
+}
+
+
+.btn-flat 
+{
+    height:             100px;
+    width:              300px;
+    border-radius:      5px;
+}
+
+.btn-flat:hover 
+{
+    height:             100px;
+    width:              300px;
+    border-radius:      5px;
+    background-color:   crimson;
+}
+
+@media (max-width: 767px) 
+{
+    body 
+    {
+        padding-left:   0;
+        padding-right:  0;
+    }
+}
+
+.container 
+{
+    width:              700px;
+}

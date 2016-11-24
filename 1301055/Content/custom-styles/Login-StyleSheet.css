@@ -1,0 +1,49 @@
+﻿html {
+  position:relative;
+  min-height: 100%;
+}
+
+ body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+   
+body {
+    background-image:url('http://www.technocrazed.com/wp-content/uploads/2015/12/HD-purple-wallpaper-image-to-use-as-background-136.jpg');
+    background-repeat:no-repeat;
+    background-size:cover;
+    align-content:center;
+    /*background-color:white;*/
+}
+
+
+html .login-form{
+    display: table;
+    margin: auto;
+}
+body .login-form {
+    display: table;
+}
+.margin {
+  margin: 0 !important;
+}
+
+#logo {
+    width:100px;
+    height:100px;
+}
+
+@media (max-width: 767px) {
+    body {
+        padding-left: 0;
+        padding-right: 0;
+        background-image: url('http://www.technocrazed.com/wp-content/uploads/2015/12/HD-purple-wallpaper-image-to-use-as-background-136.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}

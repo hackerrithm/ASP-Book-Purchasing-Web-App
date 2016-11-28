@@ -453,6 +453,19 @@
                 </div>
             </div>
 
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="col-sm-4">
+                        <asp:Label ID="Label2" runat="server" Text="Books" Font-Bold="true"></asp:Label>
+                    </div>
+                    <div class="col-sm-4">
+                       <asp:ListBox ID="listBoxBookList" runat="server"></asp:ListBox>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                </div>
+
+            </div>
 
             <div class="row">
                 <br />
@@ -469,6 +482,12 @@
                 <div class="col-md-4">
                 </div>
             </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+
         </div>
     </form>
 </body>

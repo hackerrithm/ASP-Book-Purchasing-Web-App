@@ -52,25 +52,151 @@
 
     <div class="container center-block">
 
+        <br />
+            <h2 class="text-center">Books Inventory</h2>
+        <hr />
+
+        <h3>Update and Delete</h3>
+
         <table>
             <thead>
 
             </thead>
             <tbody>
-                <tr>
-                    <td>
-
+                <tr class="row">
+                    <td class="col-md-6">
+                        <asp:DropDownList ID="ddlBooksList" runat="server"></asp:DropDownList>
+                    </td>
+                    <td class="col-md-6">
+                        <asp:Button ID="btnDelete" CssClass="btn btn-danger" runat="server" Text="Delete" OnClick="btnDelete_Click" />
+                    </td>
+                </tr>
+                <tr class="row">
+                    <td class="col-md-6">
+                        <asp:Button ID="btnEdit" runat="server" CssClass="btn btn-success" Text="Update" OnClick="btnEdit_Click" />
                     </td>
                 </tr>
             </tbody>
         </table>
-
-        <br />
-            <h2 class="text-center">Books Inventory</h2>
         <hr />
+        <div class="row">
+            <div class="col-md-6">
+                <asp:Label ID="Label1" runat="server" Text="Author: "></asp:Label>
+            </div>
+            <div class="col-md-6">
+                <asp:TextBox ID="txtBookAuthor" runat="server"></asp:TextBox>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <asp:Label ID="Label3" runat="server" Text="Unit Price: "></asp:Label>
+            </div>
+            <div class="col-md-6">
+                <asp:TextBox ID="txtUnitPrice" runat="server"></asp:TextBox>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <asp:Label ID="Label4" runat="server" Text="Short Description: "></asp:Label>
+            </div>
+            <div class="col-md-6">
+                <asp:TextBox ID="txtShortDescription" runat="server"></asp:TextBox>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <asp:Label ID="Label5" runat="server" Text="Long  Description: "></asp:Label>
+            </div>
+            <div class="col-md-6">
+                <asp:TextBox ID="txtLongDescription" runat="server"></asp:TextBox>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <asp:Label ID="Label6" runat="server" Text="Quantity: "></asp:Label>
+            </div>
+            <div class="col-md-6">
+                <asp:TextBox ID="txtQuantity" runat="server"></asp:TextBox>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <asp:Label ID="Label7" runat="server" Text="PreOrder Price: "></asp:Label>
+            </div>
+            <div class="col-md-6">
+                <asp:TextBox ID="txtPreOrder" runat="server"></asp:TextBox>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <asp:Label ID="Label8" runat="server" Text="Discount: "></asp:Label>
+            </div>
+            <div class="col-md-6">
+                <asp:TextBox ID="txtDiscount" runat="server"></asp:TextBox>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <asp:Label ID="Label9" runat="server" Text="Rating: "></asp:Label>
+            </div>
+            <div class="col-md-6">
+                <asp:TextBox ID="txtRating" runat="server"></asp:TextBox>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <asp:Label ID="Label10" runat="server" Text="Publication Date: "></asp:Label>
+            </div>
+            <div class="col-md-6">
+                <asp:TextBox ID="txtPublicationDate" runat="server"></asp:TextBox>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <asp:Label ID="Label11" runat="server" Text="Print Length: "></asp:Label>
+            </div>
+            <div class="col-md-6">
+                <asp:TextBox ID="txtPrintLength" runat="server"></asp:TextBox>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <asp:Label ID="Label12" runat="server" Text="Image File: "></asp:Label>
+            </div>
+            <div class="col-md-6">
+                <asp:TextBox ID="txtImageFile" runat="server"></asp:TextBox>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <asp:Label ID="Label13" runat="server" Text="ISBN: "></asp:Label>
+            </div>
+            <div class="col-md-6">
+                <asp:TextBox ID="txtISBN" runat="server"></asp:TextBox>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <asp:Label ID="Label14" runat="server" Text="Book Status: "></asp:Label>
+            </div>
+            <div class="col-md-6">
+                <asp:TextBox ID="txtBookStatus" runat="server"></asp:TextBox>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <asp:Label ID="Label15" runat="server" Text="Category ID: "></asp:Label>
+            </div>
+            <div class="col-md-6">
+                <asp:TextBox ID="txtCategoryID" runat="server"></asp:TextBox>
+            </div>
+        </div>
+
+        <hr />
+
         <asp:ListView ID="listviewInventory" runat="server" DataKeyNames="BookID" DataSourceID="SqlDataSource1" InsertItemPosition="LastItem">
             <AlternatingItemTemplate>
-                <span style="background-color: #FFFFFF;color: #284775; color:cornflowerblue; font-family:'Times New Roman', Times, serif; font-size:large;">BookID:
+                <span style="background-color: #FFFFFF;color: #284775; color:#284775; ">BookID:
                 <asp:Label ID="BookIDLabel" runat="server" Text='<%# Eval("BookID") %>' />
                 <br />
                 Title:
@@ -253,7 +379,7 @@
                 </span>
             </InsertItemTemplate>
             <ItemTemplate>
-                <span style="background-color: #E0FFFF;color: #333333;color:crimson; font-family:'Times New Roman', Times, serif; font-size:large;">BookID:
+                <span style="background-color: #E0FFFF;color: #333333;color:#333333; ">BookID:
                 <asp:Label ID="BookIDLabel" runat="server" Text='<%# Eval("BookID") %>' />
                 <br />
                 Title:
@@ -317,18 +443,18 @@
                 <div id="itemPlaceholderContainer" runat="server" style="font-family: Verdana, Arial, Helvetica, sans-serif;">
                     <span runat="server" id="itemPlaceholder" />
                 </div>
-                <div style="text-align: center;background-color: #FFFFFF;font-family: Verdana, Arial, Helvetica, sans-serif;color: #ff0000;">
+                <div style="text-align: center;background-color: #5D7B9D; font-family: Verdana, Arial, Helvetica, sans-serif;color: #FFFFFF;">
                     <asp:DataPager ID="DataPager1" runat="server">
                         <Fields>
-                            <asp:NextPreviousPagerField ButtonType="Button" ButtonCssClass="btn btn-success" ShowFirstPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False" />
-                            <asp:NumericPagerField CurrentPageLabelCssClass="h3" />
-                            <asp:NextPreviousPagerField ButtonType="Button" ButtonCssClass="btn btn-danger" ShowLastPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False" />
+                            <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False" />
+                            <asp:NumericPagerField />
+                            <asp:NextPreviousPagerField ButtonType="Button" ShowLastPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False" />
                         </Fields>
                     </asp:DataPager>
                 </div>
             </LayoutTemplate>
             <SelectedItemTemplate>
-                <span style="background-color: #333333;font-weight: bold;color: #333333; border-right:hidden 4px;">BookID:
+                <span style="background-color: #E2DED6; font-weight: bold;color: #333333; ">BookID:
                 <asp:Label ID="BookIDLabel" runat="server" Text='<%# Eval("BookID") %>' />
                 <br />
                 Title:
@@ -390,9 +516,9 @@
             </SelectedItemTemplate>
 
         </asp:ListView>
-    
+
     </div>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:HexebookConnectionString %>" DeleteCommand="DELETE FROM [Book] WHERE [BookID] = @original_BookID AND (([Title] = @original_Title) OR ([Title] IS NULL AND @original_Title IS NULL)) AND (([Author] = @original_Author) OR ([Author] IS NULL AND @original_Author IS NULL)) AND (([PublisherID] = @original_PublisherID) OR ([PublisherID] IS NULL AND @original_PublisherID IS NULL)) AND (([UnitPrice] = @original_UnitPrice) OR ([UnitPrice] IS NULL AND @original_UnitPrice IS NULL)) AND (([ShortDescription] = @original_ShortDescription) OR ([ShortDescription] IS NULL AND @original_ShortDescription IS NULL)) AND (([LongDescription] = @original_LongDescription) OR ([LongDescription] IS NULL AND @original_LongDescription IS NULL)) AND (([Quantity] = @original_Quantity) OR ([Quantity] IS NULL AND @original_Quantity IS NULL)) AND (([PreOrderPrice] = @original_PreOrderPrice) OR ([PreOrderPrice] IS NULL AND @original_PreOrderPrice IS NULL)) AND (([Discount] = @original_Discount) OR ([Discount] IS NULL AND @original_Discount IS NULL)) AND (([Rating] = @original_Rating) OR ([Rating] IS NULL AND @original_Rating IS NULL)) AND (([PublicationDate] = @original_PublicationDate) OR ([PublicationDate] IS NULL AND @original_PublicationDate IS NULL)) AND (([PrintLength] = @original_PrintLength) OR ([PrintLength] IS NULL AND @original_PrintLength IS NULL)) AND (([ImageFile] = @original_ImageFile) OR ([ImageFile] IS NULL AND @original_ImageFile IS NULL)) AND (([ISBN] = @original_ISBN) OR ([ISBN] IS NULL AND @original_ISBN IS NULL)) AND (([BookStatus] = @original_BookStatus) OR ([BookStatus] IS NULL AND @original_BookStatus IS NULL)) AND (([CategoryID] = @original_CategoryID) OR ([CategoryID] IS NULL AND @original_CategoryID IS NULL)) AND (([BookType] = @original_BookType) OR ([BookType] IS NULL AND @original_BookType IS NULL))" InsertCommand="INSERT INTO [Book] ([Title], [Author], [PublisherID], [UnitPrice], [ShortDescription], [LongDescription], [Quantity], [PreOrderPrice], [Discount], [Rating], [PublicationDate], [PrintLength], [ImageFile], [ISBN], [BookStatus], [CategoryID], [BookType]) VALUES (@Title, @Author, @PublisherID, @UnitPrice, @ShortDescription, @LongDescription, @Quantity, @PreOrderPrice, @Discount, @Rating, @PublicationDate, @PrintLength, @ImageFile, @ISBN, @BookStatus, @CategoryID, @BookType)" OldValuesParameterFormatString="original_{0}" SelectCommand="SELECT * FROM [Book]" UpdateCommand="UPDATE [Book] SET [Title] = @Title, [Author] = @Author, [PublisherID] = @PublisherID, [UnitPrice] = @UnitPrice, [ShortDescription] = @ShortDescription, [LongDescription] = @LongDescription, [Quantity] = @Quantity, [PreOrderPrice] = @PreOrderPrice, [Discount] = @Discount, [Rating] = @Rating, [PublicationDate] = @PublicationDate, [PrintLength] = @PrintLength, [ImageFile] = @ImageFile, [ISBN] = @ISBN, [BookStatus] = @BookStatus, [CategoryID] = @CategoryID, [BookType] = @BookType WHERE [BookID] = @original_BookID AND (([Title] = @original_Title) OR ([Title] IS NULL AND @original_Title IS NULL)) AND (([Author] = @original_Author) OR ([Author] IS NULL AND @original_Author IS NULL)) AND (([PublisherID] = @original_PublisherID) OR ([PublisherID] IS NULL AND @original_PublisherID IS NULL)) AND (([UnitPrice] = @original_UnitPrice) OR ([UnitPrice] IS NULL AND @original_UnitPrice IS NULL)) AND (([ShortDescription] = @original_ShortDescription) OR ([ShortDescription] IS NULL AND @original_ShortDescription IS NULL)) AND (([LongDescription] = @original_LongDescription) OR ([LongDescription] IS NULL AND @original_LongDescription IS NULL)) AND (([Quantity] = @original_Quantity) OR ([Quantity] IS NULL AND @original_Quantity IS NULL)) AND (([PreOrderPrice] = @original_PreOrderPrice) OR ([PreOrderPrice] IS NULL AND @original_PreOrderPrice IS NULL)) AND (([Discount] = @original_Discount) OR ([Discount] IS NULL AND @original_Discount IS NULL)) AND (([Rating] = @original_Rating) OR ([Rating] IS NULL AND @original_Rating IS NULL)) AND (([PublicationDate] = @original_PublicationDate) OR ([PublicationDate] IS NULL AND @original_PublicationDate IS NULL)) AND (([PrintLength] = @original_PrintLength) OR ([PrintLength] IS NULL AND @original_PrintLength IS NULL)) AND (([ImageFile] = @original_ImageFile) OR ([ImageFile] IS NULL AND @original_ImageFile IS NULL)) AND (([ISBN] = @original_ISBN) OR ([ISBN] IS NULL AND @original_ISBN IS NULL)) AND (([BookStatus] = @original_BookStatus) OR ([BookStatus] IS NULL AND @original_BookStatus IS NULL)) AND (([CategoryID] = @original_CategoryID) OR ([CategoryID] IS NULL AND @original_CategoryID IS NULL)) AND (([BookType] = @original_BookType) OR ([BookType] IS NULL AND @original_BookType IS NULL))" ConflictDetection="CompareAllValues">
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:HexebookConnectionString %>" DeleteCommand="DELETE FROM [Book] WHERE [BookID] = @original_BookID AND (([Title] = @original_Title) OR ([Title] IS NULL AND @original_Title IS NULL)) AND (([Author] = @original_Author) OR ([Author] IS NULL AND @original_Author IS NULL)) AND (([PublisherID] = @original_PublisherID) OR ([PublisherID] IS NULL AND @original_PublisherID IS NULL)) AND (([UnitPrice] = @original_UnitPrice) OR ([UnitPrice] IS NULL AND @original_UnitPrice IS NULL)) AND (([ShortDescription] = @original_ShortDescription) OR ([ShortDescription] IS NULL AND @original_ShortDescription IS NULL)) AND (([LongDescription] = @original_LongDescription) OR ([LongDescription] IS NULL AND @original_LongDescription IS NULL)) AND (([Quantity] = @original_Quantity) OR ([Quantity] IS NULL AND @original_Quantity IS NULL)) AND (([PreOrderPrice] = @original_PreOrderPrice) OR ([PreOrderPrice] IS NULL AND @original_PreOrderPrice IS NULL)) AND (([Discount] = @original_Discount) OR ([Discount] IS NULL AND @original_Discount IS NULL)) AND (([Rating] = @original_Rating) OR ([Rating] IS NULL AND @original_Rating IS NULL)) AND (([PublicationDate] = @original_PublicationDate) OR ([PublicationDate] IS NULL AND @original_PublicationDate IS NULL)) AND (([PrintLength] = @original_PrintLength) OR ([PrintLength] IS NULL AND @original_PrintLength IS NULL)) AND (([ImageFile] = @original_ImageFile) OR ([ImageFile] IS NULL AND @original_ImageFile IS NULL)) AND (([ISBN] = @original_ISBN) OR ([ISBN] IS NULL AND @original_ISBN IS NULL)) AND (([BookStatus] = @original_BookStatus) OR ([BookStatus] IS NULL AND @original_BookStatus IS NULL)) AND (([CategoryID] = @original_CategoryID) OR ([CategoryID] IS NULL AND @original_CategoryID IS NULL)) AND (([BookType] = @original_BookType) OR ([BookType] IS NULL AND @original_BookType IS NULL))" InsertCommand="INSERT INTO [Book] ([Title], [Author], [PublisherID], [UnitPrice], [ShortDescription], [LongDescription], [Quantity], [PreOrderPrice], [Discount], [Rating], [PublicationDate], [PrintLength], [ImageFile], [ISBN], [BookStatus], [CategoryID], [BookType]) VALUES (@Title, @Author, @PublisherID, @UnitPrice, @ShortDescription, @LongDescription, @Quantity, @PreOrderPrice, @Discount, @Rating, @PublicationDate, @PrintLength, @ImageFile, @ISBN, @BookStatus, @CategoryID, @BookType)" OldValuesParameterFormatString="original_{0}" SelectCommand="SELECT * FROM [Book] ORDER BY [CategoryID]" UpdateCommand="UPDATE [Book] SET [Title] = @Title, [Author] = @Author, [PublisherID] = @PublisherID, [UnitPrice] = @UnitPrice, [ShortDescription] = @ShortDescription, [LongDescription] = @LongDescription, [Quantity] = @Quantity, [PreOrderPrice] = @PreOrderPrice, [Discount] = @Discount, [Rating] = @Rating, [PublicationDate] = @PublicationDate, [PrintLength] = @PrintLength, [ImageFile] = @ImageFile, [ISBN] = @ISBN, [BookStatus] = @BookStatus, [CategoryID] = @CategoryID, [BookType] = @BookType WHERE [BookID] = @original_BookID AND (([Title] = @original_Title) OR ([Title] IS NULL AND @original_Title IS NULL)) AND (([Author] = @original_Author) OR ([Author] IS NULL AND @original_Author IS NULL)) AND (([PublisherID] = @original_PublisherID) OR ([PublisherID] IS NULL AND @original_PublisherID IS NULL)) AND (([UnitPrice] = @original_UnitPrice) OR ([UnitPrice] IS NULL AND @original_UnitPrice IS NULL)) AND (([ShortDescription] = @original_ShortDescription) OR ([ShortDescription] IS NULL AND @original_ShortDescription IS NULL)) AND (([LongDescription] = @original_LongDescription) OR ([LongDescription] IS NULL AND @original_LongDescription IS NULL)) AND (([Quantity] = @original_Quantity) OR ([Quantity] IS NULL AND @original_Quantity IS NULL)) AND (([PreOrderPrice] = @original_PreOrderPrice) OR ([PreOrderPrice] IS NULL AND @original_PreOrderPrice IS NULL)) AND (([Discount] = @original_Discount) OR ([Discount] IS NULL AND @original_Discount IS NULL)) AND (([Rating] = @original_Rating) OR ([Rating] IS NULL AND @original_Rating IS NULL)) AND (([PublicationDate] = @original_PublicationDate) OR ([PublicationDate] IS NULL AND @original_PublicationDate IS NULL)) AND (([PrintLength] = @original_PrintLength) OR ([PrintLength] IS NULL AND @original_PrintLength IS NULL)) AND (([ImageFile] = @original_ImageFile) OR ([ImageFile] IS NULL AND @original_ImageFile IS NULL)) AND (([ISBN] = @original_ISBN) OR ([ISBN] IS NULL AND @original_ISBN IS NULL)) AND (([BookStatus] = @original_BookStatus) OR ([BookStatus] IS NULL AND @original_BookStatus IS NULL)) AND (([CategoryID] = @original_CategoryID) OR ([CategoryID] IS NULL AND @original_CategoryID IS NULL)) AND (([BookType] = @original_BookType) OR ([BookType] IS NULL AND @original_BookType IS NULL))" ConflictDetection="OverwriteChanges">
             <DeleteParameters>
                 <asp:Parameter Name="original_BookID" Type="Int32" />
                 <asp:Parameter Name="original_Title" Type="String" />

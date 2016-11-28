@@ -75,4 +75,9 @@ public class Book
 
         return displayString;
     }
+
+    public int NumberOfBooks()
+    {
+        return Quantity;
+    }
 }

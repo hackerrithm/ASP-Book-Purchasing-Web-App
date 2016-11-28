@@ -12,7 +12,7 @@ public partial class Login : System.Web.UI.Page
 {
     SqlConnection conn = null;
     SqlCommand command = null;
-    Account userAccount = new Account();
+    
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -34,6 +34,8 @@ public partial class Login : System.Web.UI.Page
 
     protected void btnLogin_Click(object sender, EventArgs e)
     {
+        Account userAccount = new Account();
+
         String connectionString = SQLConnectionString.getConnectionString();
         conn = new SqlConnection(connectionString);
 

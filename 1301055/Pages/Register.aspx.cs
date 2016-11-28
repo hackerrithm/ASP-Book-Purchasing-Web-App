@@ -13,6 +13,7 @@ public partial class Register : System.Web.UI.Page
     SqlConnection conn  = null;
     SqlCommand command  = null;
     Account userAccount = new Account();    // Create Account class object [userAccount]
+    DatabaseProcedures dbProc = new DatabaseProcedures();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -21,7 +22,6 @@ public partial class Register : System.Web.UI.Page
 
     protected void btnRegister_Click(object sender, EventArgs e)
     {
-        string accessLevel  = "user";
         string blank        = null;
 
         Account userAccount1 = new Account(txtUserNameBox.Text.ToString(), txtFirstName.Text.ToString(), 
@@ -29,23 +29,7 @@ public partial class Register : System.Web.UI.Page
                                             blank, blank, blank, blank, ddlCountries.SelectedItem.Text.ToString().Trim(), 0, blank, 
                                             DateTime.UtcNow, false);
 
-        conn = new SqlConnection(SQLConnectionString.getConnectionString());
-
-        command = new SqlCommand("spCreateUserAccount", conn);
-        command.CommandType = CommandType.StoredProcedure;
-        command.Parameters.Add("@UserName", SqlDbType.VarChar).Value    = userAccount1.UserName;
-        command.Parameters.Add("@FirstName", SqlDbType.VarChar).Value   = userAccount1.FirstName;
-        command.Parameters.Add("@LastName", SqlDbType.VarChar).Value    = userAccount1.LastName;
-        command.Parameters.Add("@Email", SqlDbType.VarChar).Value   = userAccount1.Email;
-        command.Parameters.Add("@DateJoined", SqlDbType.Date).Value     = DateTime.Now;
-        command.Parameters.Add("@Password", SqlDbType.VarChar).Value    = userAccount1.Password;
-        command.Parameters.Add("@Country", SqlDbType.VarChar).Value     = userAccount1.Country;
-        command.Parameters.Add("@AccessLevel", SqlDbType.VarChar).Value = accessLevel;
-
-        try
-        {
-            conn.Open();
-            command.ExecuteNonQuery();
+            dbProc.Insert(userAccount1);
             if (Session["AccountUserName"] == null)
             {
                 Session["AccountUserName"] = txtUserNameBox.Text;
@@ -58,25 +42,7 @@ public partial class Register : System.Web.UI.Page
                 Session["FirstTimeUser"] = true;
             }
 
-
             Response.Redirect("PurchasePage.aspx");
-        }
-        catch(SqlException sqlExcpt)
-        {
-            Debug.Write(sqlExcpt.Message);
-            Debug.Write(sqlExcpt.StackTrace);
-            Response.Write(sqlExcpt.Message);
-        }
-        catch(Exception excpt)
-        {
-            Debug.Write(excpt.Message);
-            Debug.Write(excpt.StackTrace);
-            Response.Write(excpt.Message);
-        }
-        finally
-        {
-            conn.Close();
-        }
     }
 
     protected void btnGoToLogin_Click(object sender, EventArgs e)

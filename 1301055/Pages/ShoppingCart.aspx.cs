@@ -10,14 +10,13 @@ public partial class ShoppingCart : System.Web.UI.Page
     CartItemList bookItemList;
     Order order = new Order();
     Account userAccountSessionTracker = new Account();
-
+    Book book = new Book();
 
     protected void Page_Load(object sender, EventArgs e)
     {
         
         userAccountSessionTracker = (Account)HttpContext.Current.Session["User"];
-
-
+   
         bookItemList        = CartItemList.GetCart();
         lblTotalPrice.Text  = HttpContext.Current.Session["OrderTotalAmount"].ToString();
         order.TotalAmount   = Convert.ToDecimal(lblTotalPrice.Text);
@@ -74,7 +73,6 @@ public partial class ShoppingCart : System.Web.UI.Page
     protected void btnPorceedToCheckOut_Click(object sender, EventArgs e)
     {
         userAccountSessionTracker = (Account)HttpContext.Current.Session["User"];
-
         HttpContext.Current.Session["OrderTotalAmount"] = lblTotalPrice.Text;
         Response.Redirect("CompleteOrder.aspx");
     }

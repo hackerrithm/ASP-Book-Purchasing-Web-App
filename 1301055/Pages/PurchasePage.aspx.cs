@@ -22,10 +22,13 @@ public partial class PurchasePage : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+
+        acc.UserName = Session["AccountUserName"].ToString();
         if (!IsPostBack)
         {
             Account userAccountSessionTracker   = new Account();
             userAccountSessionTracker           = (Account)HttpContext.Current.Session["User"];
+            lblUserNameNav.Text = acc.UserName;
             loadCategoriesFromDatabase();
             toggleImagePanel(false);
         }
@@ -220,20 +223,7 @@ public partial class PurchasePage : System.Web.UI.Page
     {
         try
         {
-            using (conn = new SqlConnection(SQLConnectionString.getConnectionString()))
-            {
-                //string query = "SELECT Title, Author, UnitPrice, ShortDescription, LongDescription, Rating, ImageFile, Discount, PreOrderPrice, PrintLength FROM BOOK WHERE Title='" +ddlBookName.SelectedItem.Text.ToString().Trim()+ "' ";
-                command = new SqlCommand();
-                command.Connection = conn;
-                command.CommandText = "spGetBookDetails";
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@SelectedBook", (ddlBookName.SelectedItem.Text.ToString().Trim()));
-
-//                SqlCommand command = new SqlCommand(query, conn);
-
-                conn.Open();
-
-                SqlDataReader dataReader = command.ExecuteReader();
+                SqlDataReader dataReader = (SqlDataReader)DatabaseProcedures.GetProductsByCategory((ddlBookName.SelectedItem.Text.ToString().Trim()), conn);
 
                 while (dataReader.Read())
                 {
@@ -251,7 +241,6 @@ public partial class PurchasePage : System.Web.UI.Page
 
                 dataReader.Close();
                 conn.Close();
-            }
         }
         catch (SqlException sqlErr)
         {
@@ -363,12 +352,15 @@ public partial class PurchasePage : System.Web.UI.Page
 
     protected void btnGoToCart_Click(object sender, EventArgs e)
     {
+        int totalNumberOfBooks = 0;
         for (int i=0; i < bookItemList.Count; i++)
         {
             order.TotalAmount += (bookItemList[i].UnitPrice * bookItemList[i].Quantity);
+            totalNumberOfBooks += bookItemList[i].Quantity;
         }
-
+        Session["UserName"] = acc.UserName;
         Session["OrderTotalAmount"] = order.TotalAmount;
+        Session["NumberOfBooks"] = totalNumberOfBooks;
         Response.Redirect("ShoppingCart.aspx");
     }
   

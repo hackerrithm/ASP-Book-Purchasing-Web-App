@@ -28,7 +28,7 @@
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>Cart</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>Welcome <asp:Label ID="lblUserNameNav" runat="server"></asp:Label></a></li>
                         <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>List</a></li>
                         <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>History</a></li>
                         <li class="dropdown">

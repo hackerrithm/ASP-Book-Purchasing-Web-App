@@ -17,6 +17,7 @@ public partial class CompleteOrder : System.Web.UI.Page
     Order order = new Order();
     CartItemList bookItemList;
     Account userAccountSessionTracker = new Account();
+    CartItem cItem = new CartItem();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -28,7 +29,37 @@ public partial class CompleteOrder : System.Web.UI.Page
         bookItemList = CartItemList.GetCart();
 
         lblTotalAmount.Text = order.TotalAmount.ToString();
+
+        if (!IsPostBack)
+        {
+            displayList();
+        }
+        else
+        {
+
+        }
     }
+
+
+    private void displayList()
+    {
+        Book book;
+        listBoxBookList.Items.Clear();
+
+        for (int i = 0; i < bookItemList.Count; i++)
+        {
+            book = bookItemList[i];
+            listBoxBookList.Items.Add(book.Display());
+        }
+    }
+
+    private void fillOrderDetails()
+    {
+
+    }
+
+
+
 
     private void placeOrder()
     {
@@ -39,6 +70,9 @@ public partial class CompleteOrder : System.Web.UI.Page
         string zipCode = txtZipCode.Text;
         string country = ddlCountries.SelectedItem.ToString();
         string contactNumber = txtContactNumber.Text.ToString();
+        string purchaseType;
+        int cardID = 0;
+        int pymentType = 0;
 
         string paymentMethod = rdbPaymentMethod.SelectedItem.ToString();
 
@@ -47,6 +81,10 @@ public partial class CompleteOrder : System.Web.UI.Page
             order.CashPurchase = true;
             order.CreditCardPurchase = false;
             order.DebitCardPurchase = false;
+            purchaseType = "Yes";
+            cardID = 0;
+            pymentType = 3;
+
         }
         else if (rdbPaymentMethod.SelectedIndex.Equals(1))
         {
@@ -54,6 +92,9 @@ public partial class CompleteOrder : System.Web.UI.Page
             order.DebitCardPurchase = false;
             order.CashPurchase = false;
             order.CardNumber = txtCardNumber.Text.ToString().Trim();
+            purchaseType = "Yes";
+            cardID = Convert.ToInt32(txtCardNumber.Text);
+            pymentType = 1;
         }
         else if (rdbPaymentMethod.SelectedIndex.Equals(2))
         {
@@ -61,6 +102,8 @@ public partial class CompleteOrder : System.Web.UI.Page
             order.CreditCardPurchase = false;
             order.CashPurchase = false;
             order.CardNumber = txtCardNumber.Text.ToString().Trim();
+            cardID = Convert.ToInt32(txtCardNumber.Text);
+            pymentType = 2;
         }
 
         bool subscribeToNewsLetter = false;
@@ -81,86 +124,55 @@ public partial class CompleteOrder : System.Web.UI.Page
 
         DateTime orderDate = DateTime.Now;
 
-        conn = new SqlConnection(SQLConnectionString.getConnectionString());
+        Account acc = new Account();
 
-        //string query = "INSERT INTO Order ([OrderDate],[PaymentDate],[ShipperID],[ShipmentDate],[SalesTax],[SalesTaxStatus],[UserID],[OrderStatus],[NumberOfBooks],[CreditCardPurchase],[DebitCardPurchase],[CashPurchase],[CardID],[UserName],[TotalPrice],[PaymentID]) VALUES (@OrderDate,@PaymentDate,@ShipperID,@ShipmentDate,@SalesTax,@SalesTaxStatus,@UserID,@OrderStatus,@NumberOfBooks,@CreditCardPurchase,@DebitCardPurchase,@CashPurchase,@CardID,@UserName,@TotalPrice,@PaymentID)";
-        string query = "INSERT INTO [dbo].[Order]" + 
-           "([OrderDate]" +
-           ",[PaymentDate]" +
-           ",[ShipperID]" +
-           ",[ShipmentDate]" +
-           ",[SalesTax]" +
-           ",[SalesTaxStatus]" +
-           ",[UserID]" +
-           ",[OrderStatus]" +
-           ",[NumberOfBooks]" +
-           ",[CreditCardPurchase]" +
-           ",[DebitCardPurchase]"+
-           ",[CashPurchase]"+
-           ",[CardID]"+
-           ",[UserName]"+
-           ",[TotalPrice]"+
-           ",[PaymentID])"+
-     "VALUES" +
-           "(@OrderDate"+
-           ",@PaymentDate"+
-           ",@ShipperID" +
-           ",@ShipmentDate" +
-           ",@SalesTax" +
-           ",@SalesTaxStatus" +
-           ",@UserID" +
-           ",@OrderStatus" +
-           ",@NumberOfBooks" +
-           ",@CreditCardPurchase" +
-           ",@DebitCardPurchase" +
-           ",@CashPurchase" +
-           ",@CardID" +
-           ",@UserName" +
-           ",@TotalPrice" +
-           ",@PaymentID)";
+        acc.UserName = Session["UserName"].ToString();
+
+        conn = new SqlConnection(SQLConnectionString.getConnectionString());
 
         command = new SqlCommand("spCompleteOrder", conn);
         command.CommandType = CommandType.StoredProcedure;
 
-        //command = new SqlCommand(query, conn);
 
-                command.Parameters.Add("@OrderDate", SqlDbType.DateTime).Value          = orderDate;
-                command.Parameters.Add("@PaymentDate", SqlDbType.DateTime).Value        = DateTime.Now;
-                command.Parameters.Add("@ShipperID", SqlDbType.Int).Value               = 1;
-                command.Parameters.Add("@ShipmentDate", SqlDbType.Date).Value           = DateTime.Now;
-                command.Parameters.Add("@SalesTax", SqlDbType.Int).Value                = 30;
-                command.Parameters.Add("@SalesTaxStatus", SqlDbType.NVarChar).Value     = "Taxed";
-                command.Parameters.Add("@UserID", SqlDbType.Int).Value                  = 1;
-                command.Parameters.Add("@OrderStatus", SqlDbType.NVarChar).Value        = "ordered";
-                command.Parameters.Add("@NumberOfBooks", SqlDbType.Int).Value           = 400;
-                command.Parameters.Add("@CreditCardPurchase", SqlDbType.NVarChar).Value = "Yes";
-                command.Parameters.Add("@DebitCardPurchase", SqlDbType.NVarChar).Value  = "Yes";
-                command.Parameters.Add("@CashPurchase", SqlDbType.NVarChar).Value       = "Yes";
-                command.Parameters.Add("@CardID", SqlDbType.Int).Value                  = 1;
-                command.Parameters.Add("@UserName", SqlDbType.VarChar).Value            = username;
-                command.Parameters.Add("@TotalPrice", SqlDbType.Decimal).Value          = 123;
-                command.Parameters.Add("@PaymentID", SqlDbType.Int).Value               = 1;
-            try
-            {
-                conn.Open();
-                command.ExecuteNonQuery();
-            }
-            catch (SqlException sqlErr)
-            {
-                Debug.Write(sqlErr);
-                Response.Write(sqlErr);
-                Debug.Write(sqlErr.Message);
-            }
-            catch (Exception excpt)
-            {
-                Debug.Write(excpt.StackTrace);
-                Response.Write(excpt);
-                Debug.Write(excpt.Message);
-            }
-            finally
-            {
-                conn.Close();
-            }       
+        //Response.Write(Book.NumberOfBooks());
+
+        command.Parameters.Add("@OrderDate", SqlDbType.DateTime).Value          = orderDate;
+        command.Parameters.Add("@PaymentDate", SqlDbType.DateTime).Value        = DateTime.Now;
+        command.Parameters.Add("@ShipperID", SqlDbType.Int).Value               = 1;
+        command.Parameters.Add("@ShipmentDate", SqlDbType.Date).Value           = DateTime.Now;
+        command.Parameters.Add("@SalesTax", SqlDbType.Int).Value                = 30;
+        command.Parameters.Add("@SalesTaxStatus", SqlDbType.NVarChar).Value     = "Taxed";
+        command.Parameters.Add("@UserID", SqlDbType.Int).Value                  = userAccountSessionTracker.UserID;
+        command.Parameters.Add("@OrderStatus", SqlDbType.NVarChar).Value        = "ordered";
+        command.Parameters.Add("@NumberOfBooks", SqlDbType.Int).Value           = 2;
+        command.Parameters.Add("@CreditCardPurchase", SqlDbType.NVarChar).Value = "Yes";
+        command.Parameters.Add("@DebitCardPurchase", SqlDbType.NVarChar).Value  = "Yes";
+        command.Parameters.Add("@CashPurchase", SqlDbType.NVarChar).Value       = "Yes";
+        command.Parameters.Add("@CardID", SqlDbType.Int).Value                  = cardID;
+        command.Parameters.Add("@UserName", SqlDbType.VarChar).Value            = username;
+        command.Parameters.Add("@TotalPrice", SqlDbType.Decimal).Value          = order.TotalAmount;
+        command.Parameters.Add("@PaymentID", SqlDbType.Int).Value               = pymentType;
+        try
+        {
+            conn.Open();
+            command.ExecuteNonQuery();
+        }
+        catch (SqlException sqlErr)
+        {
+            Debug.Write(sqlErr);
+            Response.Write(sqlErr);
+            Debug.Write(sqlErr.Message);
+        }
+        catch (Exception excpt)
+        {
+            Debug.Write(excpt.StackTrace);
+            Response.Write(excpt);
+            Debug.Write(excpt.Message);
+        }
+        finally
+        {
+            conn.Close();
+        }
     }
 
     protected void btnCompleteBookOrder_Click(object sender, EventArgs e)

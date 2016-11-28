@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -7,6 +10,7 @@ using System.Web;
 /// <summary>
 /// Summary description for SQLConnectionString
 /// </summary>
+
 public static class SQLConnectionString
 {
     static SQLConnectionString()
